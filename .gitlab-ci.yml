@@ -1,0 +1,25 @@
+
+
+variables:
+  USER_GITLAB: diopmo@ept.sn
+  APP_NAME: poc-cicd
+
+stages:
+  - build
+  - test
+
+maven-build:
+  image: maven:3-jdk-11
+  stage: build
+  script: "mvn clean package -B"
+  artifacts:
+    paths:
+      - target/*.jar
+
+maven-test:
+  image: maven:3-jdk-11
+  stage: test
+  script: "mvn test"
+  artifacts:
+    paths:
+      - target/*.jar
