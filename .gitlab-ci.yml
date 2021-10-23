@@ -4,16 +4,14 @@ services:
 
 variables:
   USER_GITLAB: sanjaybsm
-  APP_NAME: springbootgitlab
-  REPO: springbootlabtest
+  APP_NAME: poc-ci
 
 stages:
   - build
   - test
-  - docker
 
 maven-build:
-  image: maven:3-jdk-8
+  image: maven:3-jdk-11
   stage: build
   script: "mvn clean package -B"
   artifacts:
@@ -21,7 +19,7 @@ maven-build:
       - target/*.jar
 
 maven-test:
-  image: maven:3-jdk-8
+  image: maven:3-jdk-11
   stage: test
   script: "mvn test"
   artifacts:
